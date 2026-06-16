@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantàbria Vlog | Diari de viatge amb vídeo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #e8e2d9 0%, #dcd3c8 100%);
+            color: #1e2a24;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .top-bar {
+            background: rgba(30, 34, 28, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(192, 154, 107, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f3e7c9, #d6b07a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .logo span {
+            background: none;
+            color: #e2c29b;
+            font-weight: 400;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links li {
+            cursor: pointer;
+        }
+        .nav-links a, .nav-links .nav-tab {
+            text-decoration: none;
+            font-weight: 500;
+            color: #f0e6d8;
+            transition: 0.3s;
+            letter-spacing: 0.3px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links .nav-tab:hover {
+            color: #e3b87c;
+            transform: translateY(-2px);
+        }
+        .search-sim {
+            background: rgba(255, 248, 235, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f0e2cf;
+            border: 1px solid rgba(210, 170, 110, 0.4);
+        }
+
+        .hero {
+            background:
+              linear-gradient(rgba(15,31,24,0.55), rgba(15,31,24,0.75)),
+              var(--hero-img, url('hero.png')) center/cover no-repeat,
+              radial-gradient(circle at 30% 10%, #2a3b32, #0f1f18);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            box-shadow: inset 0 -20px 30px -20px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(120deg, #fff2e0, #e7c9a3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            max-width: 700px;
+            margin: 1.2rem auto 0;
+            opacity: 0.9;
+            font-size: 1.15rem;
+        }
+        .btn-hero {
+            margin-top: 2rem;
+            background: #b87c4f;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .btn-hero:hover {
+            background: #d49560;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #bb8555;
+            padding-left: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            color: #2a2b26;
+            text-shadow: 0 1px 1px rgba(255,255,200,0.6);
+        }
+        .google-badge {
+            background: rgba(0,0,0,0.08);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #4a3b2c;
+            border: 1px solid rgba(100, 70, 40, 0.2);
+        }
+
+        /* Accordions */
+        .accordion {
+            margin-bottom: 1.2rem;
+            border-radius: 32px;
+            background: rgba(255, 250, 240, 0.85);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,240,0.8);
+            overflow: hidden;
+            border: 1px solid rgba(180, 130, 80, 0.25);
+        }
+        .accordion-header {
+            background: linear-gradient(115deg, #fffaf0, #fdf3e6);
+            padding: 1.2rem 1.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #3a2c1c;
+            border-bottom: 1px solid transparent;
+        }
+        .accordion-header:hover {
+            background: linear-gradient(115deg, #fff5e6, #fcedda);
+        }
+        .accordion-header i {
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            color: #b87c4f;
+        }
+        .accordion.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+            background: rgba(252, 248, 240, 0.9);
+        }
+        .accordion.active .accordion-content {
+            max-height: 3000px;
+        }
+        .content-inner {
+            padding: 1.8rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .card-item {
+            background: linear-gradient(135deg, #ffffff, #fdf7ef);
+            border-radius: 28px;
+            padding: 1.2rem;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2), box-shadow 0.3s;
+            border: 1px solid rgba(200, 165, 115, 0.3);
+        }
+        .card-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 36px -16px rgba(0, 0, 0, 0.3);
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #cfc3b0;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: inset 0 0 0 1px rgba(255,245,215,0.5), 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1);
+        }
+        .card-item:hover .card-img img { transform: scale(1.06); }
+        .day-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-top: 12px;
+            display: block;
+            box-shadow: 0 6px 14px -6px rgba(0,0,0,0.25);
+        }
+        .logistics-banner {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            object-fit: cover;
+            border-radius: 28px;
+            margin-bottom: 1.5rem;
+            display: block;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.3);
+        }
+        .card-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: #2f2a22;
+        }
+        .price {
+            font-weight: 700;
+            color: #9b6a3c;
+        }
+        .rating {
+            color: #c68b3c;
+            font-weight: 600;
+        }
+        .btn-card {
+            margin-top: 1rem;
+            background: linear-gradient(95deg, #b87c4f, #9b623c);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.85rem;
+            transition: all 0.25s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn-card:hover {
+            background: linear-gradient(95deg, #ce9162, #b07146);
+            transform: scale(0.97);
+        }
+        .itinerari-dia {
+            background: linear-gradient(115deg, #fbf5ea, #f7efe2);
+            border-radius: 28px;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            border-left: 6px solid #c4905e;
+            box-shadow: 0 8px 14px -8px rgba(0, 0, 0, 0.1);
+        }
+        .itinerari-dia:hover {
+            transform: translateX(8px);
+            background: #fffcf3;
+        }
+
+        /* Secció de vídeo */
+        .video-section {
+            background: #1e2a24;
+            border-radius: 32px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3);
+        }
+        .video-section video {
+            width: 100%;
+            border-radius: 24px;
+            outline: none;
+        }
+
+        footer {
+            background: #1a2a22;
+            color: #cbc2b0;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -12px 20px -12px rgba(0,0,0,0.3);
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, #cbad85, #e2cfb5, #cbad85);
+        }
+        /* Transicions entre pestanyes */
+        .hidden-section { display: none; }
+        .active-section {
+            display: block;
+            animation: sectionIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+        }
+        .section-leaving {
+            animation: sectionOut 0.28s ease forwards;
+            pointer-events: none;
+        }
+        @keyframes sectionIn {
+            from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(4px); }
+            to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes sectionOut {
+            from { opacity: 1; transform: translateY(0); filter: blur(0); }
+            to   { opacity: 0; transform: translateY(-12px); filter: blur(3px); }
+        }
+        .nav-tab.is-active { color: #e3b87c; }
+        .nav-tab.is-active::after {
+            content: ""; display: block; height: 2px; margin-top: 4px;
+            background: linear-gradient(90deg, transparent, #e3b87c, transparent);
+        }
+
+        @media (max-width: 900px) {
+            .nav-container { padding: 1rem 1.2rem; gap: 12px; }
+            .search-sim { display: none; }
+            .hero { padding: 3.5rem 1.2rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .container { padding: 1.5rem 1rem; }
+            .section-title { font-size: 1.5rem; gap: 8px; }
+            .section-title .google-badge { font-size: 0.7rem; padding: 0.25rem 0.8rem; }
+            .accordion-header { padding: 1rem 1.2rem; font-size: 1.05rem; }
+            .content-inner { padding: 1.2rem; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+            .itinerari-dia { padding: 1rem 1.2rem; }
+            .itinerari-dia:hover { transform: none; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .day-img { aspect-ratio: 4 / 3; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .active-section, .section-leaving { animation: none !important; }
+            .card-item:hover .card-img img { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="nav-container">
+        <div class="logo">Cantabria<span>Vlog</span></div>
+        <ul class="nav-links">
+            <li><button class="nav-tab" data-section="itinerari">Itinerari</button></li>
+            <li><button class="nav-tab" data-section="complementaries">Activitats</button></li>
+            <li><button class="nav-tab" data-section="logistica">Logística</button></li>
+            <li><button class="nav-tab" data-section="videoblog">Videoblog</button></li>
+        </ul>
+        <div class="search-sim"><i class="fas fa-search"></i> Cerca a Google "viatge Cantàbria"</div>
+    </div>
+</div>
+
+<section class="hero">
+    <h1>Blog de CANTABRIA</h1>
+    <p>5 dies de natura salvatge, surf, art rupestre i gastronomia | Júlia, Andrea, Marc i Clara</p>
+    <button class="btn-hero" id="btnComencar"><i class="fas fa-map-marked-alt"></i> Començar el viatge</button>
+</section>
+
+<!-- SECCIÓ ITINERARI -->
+<div id="itinerari-section" class="container active-section">
+    <div class="section-title">
+        <span>Itinerari real — 8 a 12 de juny</span>
+        <div class="google-badge"><i class="fab fa-google"></i> google.com/search?q=itinerari+Cantabria</div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Dilluns 8 juny · Castro Urdiales i arribada <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner"><strong>Itinerari:</strong> Institut → passeig per Castro Urdiales → arribada al càmping. <br> <strong>Matí:</strong> Passeig per Castro Urdiales (cap a les 14:30). <br> <strong>Àpats:</strong> Esmorzar (gasolinera), dinar (Castro Urdiales) i sopar al càmping. <br><img class="day-img" loading="lazy" decoding="async" src="castrourdiales.png" alt="Vista de Castro Urdiales" data-base="castrourdiales" onerror="tryExts(this)"><p style="margin-top:10px;"><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://www.turismodecastrourdiales.net/" target="_blank" rel="noopener">Web oficial de Castro Urdiales →</a></p></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Dimarts 9 juny · Parc de Cabárceno + Santander <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner"><strong>Itinerari:</strong> Càmping – Cabárceno – Santander – Càmping. <br> <strong>Matí:</strong> Visita guiada + teleféric sobre animals en semillibertat. <br> <strong>Tarda:</strong> Platges del Sardinero i península de la Magdalena. <br> <strong>Àpats:</strong> Completes al càmping.<img class="day-img" loading="lazy" decoding="async" src="cabarceno.png" alt="Parc de Cabárceno" data-base="cabarceno" onerror="tryExts(this)"><p style="margin-top:10px;"><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://parquedecabarceno.com/" target="_blank" rel="noopener">Web del Parc de Cabárceno →</a></p></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Dimecres 10 juny · Surf + Altamira + Santillana <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner"><strong>Itinerari:</strong> Platja de Suances – Museu d'Altamira – Santillana del Mar. <br> <strong>Matí:</strong> Primera sessió de surf amb monitors. <br> <strong>Tarda:</strong> Visita a la Neocueva i passeig medieval.<img class="day-img" loading="lazy" decoding="async" src="altamira.png" alt="Bisó d'Altamira" data-base="altamira" onerror="tryExts(this)"><p style="margin-top:10px;"><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://www.culturaydeporte.gob.es/mnaltamira/" target="_blank" rel="noopener">Museu d'Altamira →</a></p></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Dijous 11 juny · Més surf, Casc antic i vaixell a Somo <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner"><strong>Itinerari:</strong> Càmping – Suances – Santander (Casc antic) – Somo. <br> <strong>Matí:</strong> Segona jornada de surf. <br> <strong>Tarda:</strong> Visita cultural i comercial + vaixell per la badia fins a Somo.<img class="day-img" loading="lazy" decoding="async" src="somo.png" alt="Platja de Somo" data-base="somo" onerror="tryExts(this)"><p style="margin-top:10px;"><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://turismo.santander.es/" target="_blank" rel="noopener">Turisme de Santander →</a></p></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Divendres 12 juny · Bilbao · Museu Guggenheim i tornada <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner"><strong>Itinerari:</strong> Santillana del Mar – Bilbao – Institut. <br> <strong>Activitats:</strong> Ria del Nervión i entrada al Museu Guggenheim (Frank Gehry). <br> <strong>Àpats:</strong> Esmorzar al càmping + picnic de tornada.<img class="day-img" loading="lazy" decoding="async" src="guggenheim.png" alt="Museu Guggenheim Bilbao" data-base="guggenheim" onerror="tryExts(this)"><p style="margin-top:10px;"><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://www.guggenheim-bilbao.eus/" target="_blank" rel="noopener">Museu Guggenheim Bilbao →</a></p></div></div>
+    </div>
+</div>
+
+<!-- SECCIÓ ACTIVITATS COMPLEMENTÀRIES -->
+<div id="complementaries-section" class="container hidden-section">
+    <div class="section-title">
+        <span>Activitats complementaries · Guia completa</span>
+        <div class="google-badge"><i class="fab fa-google"></i> "que hacer en Cantabria"</div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">Millors restaurants a Cantàbria (8) <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner" id="restaurantsGrid"><div class="cards-grid"></div></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Les millors caminades a Cantàbria (8) <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner" id="caminadesGrid"><div class="cards-grid"></div></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Festes populars de Cantàbria (8) <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner" id="festesGrid"><div class="cards-grid"></div></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Esdeveniments esportius destacats <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner" id="esportsGrid"><div class="cards-grid"></div></div></div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-header">Activitats culturals imprescindibles <i class="fas fa-chevron-down"></i></div>
+        <div class="accordion-content"><div class="content-inner" id="culturaGrid"><div class="cards-grid"></div></div></div>
+    </div>
+</div>
+
+<!-- SECCIÓ LOGÍSTICA I PRESSUPOST -->
+<div id="logistica-section" class="container hidden-section">
+    <div class="section-title">
+        <span>Logística, transport i pressupost real</span>
+        <div class="google-badge"><i class="fab fa-google"></i> com arribar a Cantàbria amb autocar</div>
+    </div>
+    <img class="logistics-banner" loading="lazy" decoding="async" src="logistica.png" alt="Costa de Santander, Cantàbria" data-base="logistica" onerror="tryExts(this)">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem;">
+        <div class="itinerari-dia"><i class="fas fa-bus" style="font-size: 2rem; color:#9b623c;"></i><h3>Transport real</h3><p>Autocar privat 5 dies complets (anada/tornada + trasllats interns). Vaixell/ferri a Somo. Teleféric a Cabárceno inclòs.</p><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://www.alsa.com/es/web/bus/destinos/cantabria" target="_blank" rel="noopener">Veure rutes ALSA →</a></div>
+        <div class="itinerari-dia"><i class="fas fa-utensils" style="font-size: 2rem;"></i><h3>Allotjament i àpats</h3><p>Càmping amb pensió completa: esmorzar, dinar i sopar. Darrer dia picnic de tornada.</p><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://www.google.com/search?q=camping+Cabañas+de+Cantabria" target="_blank" rel="noopener">Veure càmping →</a></div>
+        <div class="itinerari-dia"><i class="fas fa-euro-sign" style="font-size: 2rem;"></i><h3>Pressupost estimat</h3><p>Transport + entrades + surf + càmping ≈ <strong>380€ – 450€</strong> (dades reals sense invents).</p><a class="btn-card" style="display:inline-block;text-decoration:none;width:auto;padding:0.5rem 1.4rem;" href="https://turismodecantabria.com/" target="_blank" rel="noopener">Turisme de Cantàbria →</a></div>
+    </div>
+    <hr>
+    <div style="background: rgba(200, 175, 140, 0.2); border-radius: 32px; padding: 1.5rem; backdrop-filter: blur(2px);">
+        <h3><i class="fas fa-exchange-alt"></i> Altres opcions de mobilitat</h3>
+        <p><strong>AVE/Avió:</strong> menys hores de viatge.</p>
+        <div class="google-badge" style="margin-top: 12px;"><i class="fab fa-google"></i> "transporte grupos escolares Cantabria"</div>
+    </div>
+</div>
+
+<!-- SECCIÓ VIDEOBLOG -->
+<div id="videoblog-section" class="container hidden-section">
+    <div class="section-title">
+        <span>Videoblog del viatge</span>
+        <div class="google-badge"><i class="fab fa-google"></i> vídeo promocional Cantàbria</div>
+    </div>
+    <div class="video-section">
+        <video controls preload="metadata" poster="videoblog.png">
+            <source src="videoblog.mp4" type="video/mp4">
+            El teu navegador no suporta el vídeo. Assegura't que el fitxer "videoblog.mp4" és a la mateixa carpeta.
+        </video>
+        <p style="color:#e2d4c0; margin-top: 1rem; text-align: center;">🎬 Vídeo promocional de Cantàbria - Editat pels alumnes</p>
+    </div>
+</div>
+
+<footer>
+    <p>Blog de viatge realitzat per Júlia Pérez, Andrea Martin, Marc Santiago i Clara Peragón · 4t ESO</p>
+    <p>Dades reals del viatge a Cantàbria — Totes les activitats complementaries originals del document</p>
+</footer>
+
+<script>
+    // Helpers
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function hashCode(s){ let h=0; for(let i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0; } return Math.abs(h); }
+    // Normalitza un nom a fitxer local: minúscules, sense accents/apòstrofs/espais
+    function slug(s){
+        return String(s).toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+            .replace(/[^a-z0-9]/g,'');
+    }
+    const IMG_EXTS = ['png','jpg','jpeg','webp','PNG','JPG','JPEG'];
+    // Prova la següent extensió si la imatge no carrega
+    window.tryExts = function(img){
+        const base = img.dataset.base; if(!base) { img.style.opacity='0.25'; return; }
+        let i = img.dataset.i ? parseInt(img.dataset.i)+1 : 1;
+        if(i >= IMG_EXTS.length){ img.style.opacity='0.25'; img.alt='(afegeix '+base+'.png a la carpeta)'; return; }
+        img.dataset.i = i;
+        img.src = base + '.' + IMG_EXTS[i];
+    };
+    function imgFor(name){
+        const base = slug(name);
+        return { src: base + '.' + IMG_EXTS[0], base };
+    }
+    function googleSearch(q){ return `https://www.google.com/search?q=${encodeURIComponent(q)}`; }
+    function gmaps(q){ return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`; }
+    function wiki(q){ return `https://ca.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(q)}`; }
+
+    // Dades amb URL real i paraules clau d'imatge
+    const restaurants = [
+        { nom: "El Nuevo Barrio", ubicacio: "Arce · Espanyola", preu: "55 €", rating: "9.7", desc: "Cuina tradicional i ambient acollidor.", kw:["restaurant","spanish","food"], url: googleSearch("Restaurante El Nuevo Barrio Arce Cantabria") },
+        { nom: "La Yerbità", ubicacio: "Sobarzo · Tradicional", preu: "40 €", rating: "9.8", desc: "Especialitats casolanes.", kw:["restaurant","traditional","tapas"], url: googleSearch("La Yerbita Sobarzo restaurante") },
+        { nom: "Le Horreo", ubicacio: "Arce · Espanyola", preu: "25 €", rating: "9.4", desc: "Menú econòmic de qualitat.", kw:["restaurant","menu","spain"], url: googleSearch("Le Horreo Arce restaurante") },
+        { nom: "Querida Margarita", ubicacio: "Santander", preu: "30 €", rating: "9.5", desc: "Fusió cantàbrica.", kw:["restaurant","santander","fusion"], url: googleSearch("Querida Margarita Santander") },
+        { nom: "Casona del Judío", ubicacio: "Santander · Alta cuina", preu: "85 €", rating: "9.9", desc: "Estrella Michelin.", kw:["michelin","gourmet","plating"], url: googleSearch("Casona del Judio Santander Michelin") },
+        { nom: "Parador de Santillana", ubicacio: "Santillana del Mar", preu: "45 €", rating: "8.9", desc: "Menú típic al parador.", kw:["parador","santillana","spain"], url: "https://paradores.es/es/parador-de-santillana-del-mar" },
+        { nom: "El Remedio", ubicacio: "Liandres", preu: "50 €", rating: "9.7", desc: "Vistes i marisc fresc.", kw:["seafood","ocean","restaurant"], url: googleSearch("El Remedio Liandres restaurante") },
+        { nom: "La Vinoteca", ubicacio: "Santander", preu: "40 €", rating: "9.6", desc: "Més de 200 vins.", kw:["wine","bar","cellar"], url: googleSearch("La Vinoteca Santander") }
+    ];
+    const caminades = [
+        { nom: "Ruta del Cares", desc: "Picos d'Europa", kw:["picos","europa","hiking","mountain"], url: wiki("Ruta del Cares") },
+        { nom: "Puertos de Áliva", desc: "Des de Fuente Dé", kw:["fuente","de","mountain","cantabria"], url: googleSearch("Puertos de Aliva Fuente De ruta") },
+        { nom: "Faro del Caballo", desc: "Vistes costaneres", kw:["faro","lighthouse","cantabria","cliff"], url: googleSearch("Faro del Caballo Santoña") },
+        { nom: "Costa Quebrada", desc: "Litoral salvatge", kw:["costa","quebrada","liencres","cliffs"], url: googleSearch("Costa Quebrada Liencres geoparque") },
+        { nom: "Cascada del Asón", desc: "Senderisme d'aigua", kw:["cascada","ason","waterfall","cantabria"], url: googleSearch("Cascada del Asón Cantabria") },
+        { nom: "Bosque de Secuoyas", desc: "Cabezón de la Sal", kw:["sequoia","forest","cabezon"], url: googleSearch("Bosque de Secuoyas Cabezón de la Sal") },
+        { nom: "Camino Lebaniego", desc: "Ruta espiritual", kw:["camino","lebaniego","pilgrimage"], url: "https://caminolebaniego.com/" },
+        { nom: "Senda Costera de Prellezo", desc: "Penya-segats", kw:["prellezo","coast","cliffs","cantabria"], url: googleSearch("Senda costera Prellezo Cantabria") }
+    ];
+    const festes = [
+        { nom: "Fiesta del Orujo", kw:["orujo","fiesta","spain","drink"], url: googleSearch("Fiesta del Orujo Potes") },
+        { nom: "San Cipriano", kw:["san","cipriano","fiesta","cohicillos"], url: googleSearch("Fiesta San Cipriano Cohicillos Cantabria") },
+        { nom: "Desembarco de Carlos V", kw:["carlos","v","desembarco","laredo"], url: googleSearch("Desembarco Carlos V Laredo") },
+        { nom: "Gran Fiesta del Sobaio Pasiego", kw:["sobao","pasiego","fiesta","food"], url: googleSearch("Fiesta del Sobao Pasiego") },
+        { nom: "La Vijanera", kw:["vijanera","mask","carnival","silio"], url: wiki("La Vijanera") },
+        { nom: "Batalla de Flores", kw:["flowers","parade","laredo","carriage"], url: wiki("Batalla de Flores de Laredo") },
+        { nom: "Día de Cantabria", kw:["cantabria","day","fiesta","cabuerniga"], url: googleSearch("Día de Cantabria Cabuerniga") },
+        { nom: "La Folía", kw:["folia","san","vicente","barquera","procession"], url: googleSearch("La Folía San Vicente de la Barquera") }
+    ];
+    const esports = [
+        { nom: "La Vaca Gigante", desc: "Surf d'onades >6m · Santander", kw:["big","wave","surf","santander"], url: googleSearch("La Vaca Gigante surf Santander") },
+        { nom: "100 km / 24h Cantàbria", desc: "Ultrafons · RFEA", kw:["ultra","marathon","running","trail"], url: googleSearch("100 km 24h Cantabria atletismo") },
+        { nom: "Cantabria Bike Race", desc: "BTT puntuable nacional", kw:["mountain","bike","race","forest"], url: googleSearch("Cantabria Bike Race") },
+        { nom: "Rallye Blendio", desc: "Campionat de ral·lis", kw:["rally","car","racing","mountain"], url: googleSearch("Rallye Blendio Santander Cantabria") },
+        { nom: "Triatlón Ciudad Santander", desc: "Badia · distància olímpica", kw:["triathlon","swim","bike","run"], url: googleSearch("Triatlon Ciudad de Santander") },
+        { nom: "Picos Snow Run", desc: "Raquetes de neu · Fuente Dé", kw:["snow","running","picos","europa"], url: googleSearch("Picos Snow Run Fuente De") },
+        { nom: "Regatas de Traineras", desc: "Lliga ACT", kw:["trainera","rowing","basque","boat"], url: wiki("Liga ACT") },
+        { nom: "Pasabolo Tablón", desc: "Esport autòcton", kw:["bowling","traditional","sport","cantabria"], url: wiki("Pasabolo tablón") }
+    ];
+    const cultura = [
+        { nom: "Coves d'El Soplao", desc: "Formacions geològiques úniques", kw:["soplao","caves","geology","stalactites"], url: "https://elsoplao.es/" },
+        { nom: "Cova del Castillo", desc: "Art parietal", kw:["castillo","cave","puente","viesgo"], url: googleSearch("Cueva del Castillo Puente Viesgo") },
+        { nom: "MUPAC", desc: "Prehistòria", kw:["mupac","museum","santander","prehistory"], url: googleSearch("MUPAC Santander museo prehistoria") },
+        { nom: "Palacio de Festivales", desc: "Cultura escènica", kw:["palacio","festivales","santander","theater"], url: googleSearch("Palacio de Festivales Santander") },
+        { nom: "Capritx de Gaudí (Comillas)", desc: "Modernisme arquitectònic", kw:["gaudi","comillas","capricho","modernism"], url: "https://www.elcaprichodegaudi.com/" },
+        { nom: "Centro Botín", desc: "Art contemporani", kw:["centro","botin","santander","renzo","piano"], url: "https://www.centrobotin.org/" },
+        { nom: "Col·legiata de Santa Juliana", desc: "Romànic", kw:["colegiata","santa","juliana","romanesque"], url: wiki("Col·legiata de Santa Juliana") },
+        { nom: "Camí Lebaniego", desc: "Pelegrinatge", kw:["camino","lebaniego","monastery","pilgrim"], url: "https://caminolebaniego.com/" }
+    ];
+
+    function card({ nom, sub, extra, url, cta = "Veure més" }) {
+        const { src, base } = imgFor(nom);
+        return `<div class="card-item">
+            <div class="card-img"><img loading="lazy" decoding="async" src="${src}" data-base="${base}" alt="${esc(nom)}" onerror="tryExts(this)"></div>
+            <h4>${esc(nom)}</h4>
+            ${sub ? `<p>${esc(sub)}</p>` : ''}
+            ${extra || ''}
+            <a class="btn-card" href="${url}" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;">${cta} →</a>
+        </div>`;
+    }
+    const crearCardRestaurant = r => card({ nom:r.nom, sub:r.ubicacio, kw:r.kw, url:r.url, cta:"Reservar / Veure",
+        extra:`<div class="price">${esc(r.preu)}</div><div class="rating">⭐ ${esc(r.rating)}</div>` });
+    const crearCardCaminada = c => card({ nom:c.nom, sub:c.desc, kw:c.kw, url:c.url, cta:"Explorar ruta" });
+    const crearCardFesta    = f => card({ nom:f.nom, kw:f.kw, url:f.url, cta:"Descobrir" });
+    const crearCardEsport   = e => card({ nom:e.nom, sub:e.desc, kw:e.kw, url:e.url, cta:"Més info" });
+    const crearCardCultura  = c => card({ nom:c.nom, sub:c.desc, kw:c.kw, url:c.url, cta:"Visitar" });
+
+    document.querySelector("#restaurantsGrid .cards-grid").innerHTML = restaurants.map(crearCardRestaurant).join('');
+    document.querySelector("#caminadesGrid .cards-grid").innerHTML = caminades.map(crearCardCaminada).join('');
+    document.querySelector("#festesGrid .cards-grid").innerHTML = festes.map(crearCardFesta).join('');
+    document.querySelector("#esportsGrid .cards-grid").innerHTML = esports.map(crearCardEsport).join('');
+    document.querySelector("#culturaGrid .cards-grid").innerHTML = cultura.map(crearCardCultura).join('');
+
+    // Accordions
+    document.querySelectorAll('.accordion').forEach(acc => {
+        acc.querySelector('.accordion-header').addEventListener('click', () => acc.classList.toggle('active'));
+    });
+    document.querySelectorAll('.accordion').forEach((acc, idx) => { if (idx < 2) acc.classList.add('active'); });
+
+    // Navegació per pestanyes amb transició professional
+    const sections = {
+        itinerari: document.getElementById('itinerari-section'),
+        complementaries: document.getElementById('complementaries-section'),
+        logistica: document.getElementById('logistica-section'),
+        videoblog: document.getElementById('videoblog-section')
+    };
+    const tabs = document.querySelectorAll('.nav-tab');
+    let currentSection = 'itinerari';
+    let switching = false;
+
+    function setActiveTab(id) {
+        tabs.forEach(t => t.classList.toggle('is-active', t.getAttribute('data-section') === id));
+    }
+
+    function showSection(id) {
+        if (switching || id === currentSection) return;
+        const current = sections[currentSection];
+        const next = sections[id];
+        if (!next) return;
+        switching = true;
+        setActiveTab(id);
+        current.classList.add('section-leaving');
+        current.addEventListener('animationend', function handler() {
+            current.removeEventListener('animationend', handler);
+            current.classList.remove('active-section', 'section-leaving');
+            current.classList.add('hidden-section');
+            next.classList.remove('hidden-section');
+            next.classList.add('active-section');
+            currentSection = id;
+            window.scrollTo({ top: document.querySelector('.hero').offsetHeight - 60, behavior: 'smooth' });
+            setTimeout(() => { switching = false; }, 400);
+        }, { once: true });
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', e => showSection(e.currentTarget.getAttribute('data-section'))));
+    document.getElementById('btnComencar').addEventListener('click', () => {
+        showSection('itinerari');
+        document.getElementById('itinerari-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    setActiveTab('itinerari');
+</script>
+</body>
+</html>
